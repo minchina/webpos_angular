@@ -12,8 +12,8 @@ angular.module('angularWebposApp')
         $scope.all_items=Item.get_good_items();
         $scope.cart_total = Item.get_totalCount();
 
-        $scope.addcart=function(good_name,good_barcode){
-            Item.add_good_item(good_name,good_barcode);
+        $scope.addcart=function(good_name){
+            Item.add_good_item(good_name);
             $scope.cart_total = Item.get_totalCount();
         }
     });

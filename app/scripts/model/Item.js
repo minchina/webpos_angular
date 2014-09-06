@@ -7,24 +7,44 @@ function Item(barcode, name, unit, price,type,count,savecount) {
     this.count = count || 0;
     this.savecount = savecount || 0;
 }
+Item.prototype.single_price=function(){
+    return 1;
 
+};
 
-
-Item.add_good_item=function(good_name,good_barcode){
-    var items = count.get_all_messages();
-    _.find(items,function(item){return item.name==good_name}).count++;
-    _.find(items,function(item){return item.name==good_name}).savecount= Item.get_promotion(good_barcode,_.find(items,function(item){return item.name==good_name}).count);
-    Item.update_have_items(items);
+Item.add_good_item=function(good_name){
+    Item.update_have_items("add",good_name);
     Item.plus_cart_message();
 
 };
-Item.update_have_items=function(items){
+Item.update_have_items=function(type,good_name){
+    var items = count.get_all_messages();
+    var good_barcode = Item.get_barcode_by_name(good_name);
+    if(type=="add"){
+        _.find(items,function(item){return item.name==good_name}).count++;
+    }
+    if(type=="minus"){
+        _.find(items,function(item){return item.name==good_name}).count--;
+    }
+    _.find(items,function(item){return item.name==good_name}).savecount= Item.get_promotion(good_barcode,_.find(items,function(item){return item.name==good_name}).count) || 0;
     localStorage.haveItems = JSON.stringify(items);
 };
+
 Item.plus_cart_message=function(){
     var count = Item.get_totalCount();
     count++;
     localStorage.setItem("totalCount",count);
+};
+Item.minus_cart_message=function(){
+    var count = Item.get_totalCount();
+    count--;
+    localStorage.setItem("totalCount",count);
+};
+
+Item.get_barcode_by_name = function(good_name){
+    var items = count.get_all_messages();
+    return _.find(items,function(item){return item.name==good_name}).barcode;
+
 };
 
 Item.get_totalCount=function(){

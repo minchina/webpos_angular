@@ -14,15 +14,51 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav">
-                <li><a href="#/">主页</a></li>
-                <li><a href="#/item">商品列表</a></li>
+                <li><a ng-href="#/">主页</a></li>
+                <li><a ng-href="#/item">商品列表</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="active" style="margin-right: 50px;"><a href="#/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车(<span>{{cart_total}}</span>)</a></li>
+                <li class="active" style="margin-right: 50px;"><a ng-href="#/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车(<span>{{cart_total}}</span>)</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
 
 
     </div><!-- /.container-fluid -->
 </nav>
+
+
+<div class="container">
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>购物清单</h4></div>
+        <span id="pay_date"></span>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>分类</th>
+                    <th>名称</th>
+                    <th>单价(元)</th>
+                    <th>单位</th>
+                    <th>数量</th>
+                    <th>小计</th>
+                </tr>
+                </thead>
+                <tbody class="item-body">
+                <tr ng-repeat="item in bought_goods track by $index">
+                    <td>{{item.type}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.unit}}</td>
+                    <td><div class="btn-group"><button class="btn btn-default" ng-click="minus_good(item.name)">-</button>
+                        <button class="btn btn-default item-count" disabled="disabled">{{item.count}} </button>
+                        <button class="btn btn-default" ng-click="add_good(item.name)">+</button></div></td>
+                    <td>{{single_price(bought_goods,item.name)}}</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

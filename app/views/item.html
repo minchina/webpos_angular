@@ -14,12 +14,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav">
-                <li><a href="#/">主页</a></li>
-                <li class="active"><a href="#/item">商品列表</a></li>
+                <li><a ng-href="#/">主页</a></li>
+                <li class="active"><a ng-href="#/item">商品列表</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li style="margin-right: 50px;"><a href="#/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车(<span>{{cart_total}}</span>)</a></li>
+                <li style="margin-right: 50px;"><a ng-href="#/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车(<span>{{cart_total}}</span>)</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
 
@@ -49,9 +49,11 @@
                         <td>{{item.name}}</td>
                         <td>{{item.price}}</td>
                         <td>{{item.unit}}</td>
-                        <td><button class="btn btn-primary btm-sm" ng-click="addcart(item.name,item.barcode)">加入购物车</button></td>
+                        <td><button class="btn btn-primary btm-sm" ng-click="addcart(item.name)">加入购物车</button></td>
                     </tr>
                 </tbody>
 
             </table>
         </div>
+        </div>
+    </div>
