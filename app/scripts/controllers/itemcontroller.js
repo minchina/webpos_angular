@@ -14,6 +14,6 @@ angular.module('angularWebposApp')
 
 
         $scope.addcart=function(good_name){
-            console.log(good_name);
+            Item.add_good_item(good_name);
         }
     });
