@@ -9,4 +9,6 @@
  */
 angular.module('angularWebposApp')
     .controller('CartCtrl', function ($scope) {
+
+        $scope.cart_total = Item.get_totalCount();
     });
