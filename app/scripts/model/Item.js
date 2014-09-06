@@ -28,6 +28,10 @@ Item.display_small_count=function(goods,good_name){
     return good.price * (good.count-good.savecount)+'元'+'(原价：'+good.price*good.count+'元)';
 };
 
+Item.get_good_items=function(){
+    return loadAllItems();
+};
+
 Item.get_gift=function(){
     var buy_goods = count.get_no_null_messages();
     return _.filter(buy_goods,function(good){return good.savecount !=0});
