@@ -57,8 +57,12 @@
                     <td>{{single_price(bought_goods,item.name)}}</td>
                 </tr>
                 </tbody>
-
             </table>
+        </div>
+
+        <div class="side-space text-right">
+            <p>总计：<span id="total">{{total_price}}元</span></p>
+            <a class="btn btn-primary vertical-space" ng-href="#/payment">付款</a>
         </div>
     </div>
 </div>

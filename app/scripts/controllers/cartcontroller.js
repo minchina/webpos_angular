@@ -13,6 +13,7 @@ angular.module('angularWebposApp')
         $scope.init_data=function(){
             $scope.cart_total = Item.get_totalCount();
             $scope.bought_goods = count.get_no_null_messages();
+            $scope.total_price= count.total_price();
         };
 
         $scope.single_price=function(goods,good_name){

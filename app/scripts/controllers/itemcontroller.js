@@ -9,6 +9,7 @@
  */
 angular.module('angularWebposApp')
     .controller('ItemCtrl', function ($scope) {
+        Item.init_date();
         $scope.all_items=Item.get_good_items();
         $scope.cart_total = Item.get_totalCount();
 

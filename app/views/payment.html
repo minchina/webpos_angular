@@ -14,25 +14,74 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav">
-                <li class="active"><a ng-href="#/">主页</a></li>
+                <li><a ng-href="#/">主页</a></li>
                 <li><a ng-href="#/item">商品列表</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li style="margin-right: 50px;"><a ng-href="#/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车(<span id="count">0</span>)</a></li>
+                <li style="margin-right: 50px;"><a ng-href="#/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车(<span>{{cart_total}}</span>)</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
 
 
     </div><!-- /.container-fluid -->
 </nav>
+
+
 <div class="container">
-    <div class="jumbotron">
-        <h1>Welcome to Let's Go</h1>
-        <p>商店里进行购物结算时会使用收银机(POS)系统,这台收银机会在结算时根据客户的购物车(Cart)中的商品(Item)和商店
-            正在进行的优惠活动(Promotion)进行结算和打印购物清单。已知该商店正在对部分商品进行“买二赠一”的优惠活动。
-            我们需要实现一个名为printInventory函数，该函数能够将指定格式的数据作为参数输入，然后在浏览器的控制台中输出
-            结算的清单文本。</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Let's Go</a></p>
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>购物清单</h4></div>
+        <span id="pay_date"></span>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>分类</th>
+                    <th>名称</th>
+                    <th>单价(元)</th>
+                    <th>单位</th>
+                    <th>数量</th>
+                    <th>小计</th>
+                </tr>
+                </thead>
+                <tbody class="item-body">
+                <tr ng-repeat="item in bought_goods track by $index">
+                    <td>{{item.type}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.unit}}</td>
+                    <td>{{item.count}}</td>
+                    <td>{{single_price(bought_goods,item.name)}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-heading"><h4>赠送商品</h4></div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>分类</th>
+                    <th>名称</th>
+                    <th>数量</th>
+                </tr>
+                </thead>
+                <tbody class="gift-body">
+                <tr ng-repeat="item in gifts track by $index">
+                    <td>{{item.type}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.savecount}}</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="side-space text-right">
+            <p>总计：{{all_price}}元</p>
+            <p>节约：{{save_price}}元</p>
+            <button class="btn btn-primary vertical-space" ng-click="confirm()">确认</button>
+        </div>
     </div>
 </div>

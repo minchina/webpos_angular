@@ -22,13 +22,13 @@ count.total_price=function(){
     var total_price = 0;
     var Goods = count.change_format();
     _.each(Goods,function(good){total_price += (good.price*good.count)});
-    return total_price.toFixed(2)+"元";
+    return total_price.toFixed(2);
 };
 
 count.gift_price=function(){
     var total_price=0;
     var gifts=Item.get_gift();
     _.each(gifts,function(good){total_price += (good.price*good.savecount)});
-    return total_price.toFixed(2)+"元";
+    return total_price.toFixed(2);
 };
 

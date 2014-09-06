@@ -65,8 +65,6 @@ Item.get_promotion=function(barcode,count){
         return Math.floor(count/3);
     }
 };
-//////////////////////////////////////////////////
-
 
 Item.display_small_count=function(goods,good_name){
     var good = _.find(goods,function(good){return good.name==good_name});
