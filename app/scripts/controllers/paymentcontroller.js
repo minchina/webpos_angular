@@ -17,6 +17,7 @@ angular.module('angularWebposApp')
             $scope.gifts = Item.get_gift();
             $scope.all_price = count.total_price();
             $scope.save_price = count.gift_price();
+            $scope.pay_time = get_data();
         };
 
         $scope.single_price=function(goods,good_name){
